@@ -21,14 +21,9 @@ int Calc_det_sarus_pointer(int matrix[3][3]){
     int det=0;
     for (int m=0; m<3; m++){
         int sum=1, dif=1;
-
         for (int n=0; n<3; n++){
-
-            int shift = m + n;
-            if (shift>2)shift-=3;
-            sum *= *(*(matrix + shift) + n);
-            dif *= *(*(matrix + shift) + (2 - n));
-
+            sum *= *(*(matrix + (m + n)%3) + n);
+            dif *= *(*(matrix + (m + n)%3) + (2 - n));
         }
         det+=sum-dif;
     }
